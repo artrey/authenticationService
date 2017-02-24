@@ -1,18 +1,17 @@
-package io.swagger.model;
+package authenticationserver.swagger.model;
 
 import java.util.Objects;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
-import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 
 /**
- * Domain
+ * MDomain
  */
 @javax.annotation.Generated(value = "class io.swagger.codegen.languages.SpringCodegen", date = "2017-02-23T15:14:07.329Z")
 
-public class Domain   {
+public class MDomain {
   @JsonProperty("name")
   private String name = null;
 
@@ -53,7 +52,7 @@ public class Domain   {
   @JsonProperty("status")
   private StatusEnum status = null;
 
-  public Domain name(String name) {
+  public MDomain name(String name) {
     this.name = name;
     return this;
   }
@@ -71,7 +70,7 @@ public class Domain   {
     this.name = name;
   }
 
-  public Domain description(String description) {
+  public MDomain description(String description) {
     this.description = description;
     return this;
   }
@@ -89,7 +88,7 @@ public class Domain   {
     this.description = description;
   }
 
-  public Domain status(StatusEnum status) {
+  public MDomain status(StatusEnum status) {
     this.status = status;
     return this;
   }
@@ -116,10 +115,10 @@ public class Domain   {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    Domain domain = (Domain) o;
-    return Objects.equals(this.name, domain.name) &&
-        Objects.equals(this.description, domain.description) &&
-        Objects.equals(this.status, domain.status);
+    MDomain MDomain = (MDomain) o;
+    return Objects.equals(this.name, MDomain.name) &&
+        Objects.equals(this.description, MDomain.description) &&
+        Objects.equals(this.status, MDomain.status);
   }
 
   @Override
@@ -130,7 +129,7 @@ public class Domain   {
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class Domain {\n");
+    sb.append("class MDomain {\n");
     
     sb.append("    name: ").append(toIndentedString(name)).append("\n");
     sb.append("    description: ").append(toIndentedString(description)).append("\n");

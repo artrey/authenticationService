@@ -1,9 +1,9 @@
-package io.swagger.api;
+package authenticationserver.swagger.api;
 
-import io.swagger.model.Domain;
-import io.swagger.model.Organization;
-import io.swagger.model.UserRoles;
-import io.swagger.model.UserRolesPatch;
+import authenticationserver.swagger.model.MDomain;
+import authenticationserver.swagger.model.UserRoles;
+import authenticationserver.swagger.model.MOrganization;
+import authenticationserver.swagger.model.UserRolesPatch;
 
 import io.swagger.annotations.*;
 
@@ -12,10 +12,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RequestPart;
-import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
 
@@ -55,12 +52,12 @@ public class OrganizationsApiController implements OrganizationsApi {
     }
 
     public ResponseEntity<Void> createDomain(@ApiParam(value = "name of the organization in wich domain will be created",required=true ) @PathVariable("oName") String oName,
-        @ApiParam(value = "object that represents a new domain. Status should be null" ,required=true ) @RequestBody Domain body) {
+        @ApiParam(value = "object that represents a new domain. Status should be null" ,required=true ) @RequestBody MDomain body) {
         // do some magic!
         return new ResponseEntity<Void>(HttpStatus.OK);
     }
 
-    public ResponseEntity<Void> createOrganization(@ApiParam(value = "Object that represents a new organization. Status property should be null" ,required=true ) @RequestBody Organization body) {
+    public ResponseEntity<Void> createOrganization(@ApiParam(value = "Object that represents a new organization. Status property should be null" ,required=true ) @RequestBody MOrganization body) {
         // do some magic!
         return new ResponseEntity<Void>(HttpStatus.OK);
     }
@@ -83,15 +80,15 @@ public class OrganizationsApiController implements OrganizationsApi {
         return new ResponseEntity<Void>(HttpStatus.OK);
     }
 
-    public ResponseEntity<Domain> getDomainByName(@ApiParam(value = "name of the organization",required=true ) @PathVariable("oName") String oName,
-        @ApiParam(value = "name of the domain",required=true ) @PathVariable("name") String name) {
+    public ResponseEntity<MDomain> getDomainByName(@ApiParam(value = "name of the organization",required=true ) @PathVariable("oName") String oName,
+                                                   @ApiParam(value = "name of the domain",required=true ) @PathVariable("name") String name) {
         // do some magic!
-        return new ResponseEntity<Domain>(HttpStatus.OK);
+        return new ResponseEntity<MDomain>(HttpStatus.OK);
     }
 
-    public ResponseEntity<Organization> getOrganizationByName(@ApiParam(value = "name of organization to return",required=true ) @PathVariable("name") String name) {
+    public ResponseEntity<MOrganization> getOrganizationByName(@ApiParam(value = "name of organization to return",required=true ) @PathVariable("name") String name) {
         // do some magic!
-        return new ResponseEntity<Organization>(HttpStatus.OK);
+        return new ResponseEntity<MOrganization>(HttpStatus.OK);
     }
 
     public ResponseEntity<List<String>> getOrganizationUsers(@ApiParam(value = "name of the organization",required=true ) @PathVariable("name") String name) {
@@ -110,7 +107,7 @@ public class OrganizationsApiController implements OrganizationsApi {
     }
 
     public ResponseEntity<UserRoles> getUserRoles(@ApiParam(value = "name of the organization",required=true ) @PathVariable("name") String name,
-        @ApiParam(value = "user login",required=true ) @PathVariable("login") String login) {
+                                                  @ApiParam(value = "user login",required=true ) @PathVariable("login") String login) {
         // do some magic!
         return new ResponseEntity<UserRoles>(HttpStatus.OK);
     }

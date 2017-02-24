@@ -1,32 +1,28 @@
-package io.swagger.model;
+package authenticationserver.swagger.model;
 
 import java.util.Objects;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
-import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 
 /**
- * DomainRole
+ * UserRolesPatch
  */
 @javax.annotation.Generated(value = "class io.swagger.codegen.languages.SpringCodegen", date = "2017-02-23T15:14:07.329Z")
 
-public class DomainRole   {
-  @JsonProperty("domainName")
-  private String domainName = null;
-
+public class UserRolesPatch   {
   /**
-   * Gets or Sets role
+   * Gets or Sets action
    */
-  public enum RoleEnum {
-    DOMAINDISTRIBUTOR("domainDistributor"),
+  public enum ActionEnum {
+    ADD("add"),
     
-    STATISTICVIEWER("statisticViewer");
+    REMOVE("remove");
 
     private String value;
 
-    RoleEnum(String value) {
+    ActionEnum(String value) {
       this.value = value;
     }
 
@@ -37,8 +33,8 @@ public class DomainRole   {
     }
 
     @JsonCreator
-    public static RoleEnum fromValue(String text) {
-      for (RoleEnum b : RoleEnum.values()) {
+    public static ActionEnum fromValue(String text) {
+      for (ActionEnum b : ActionEnum.values()) {
         if (String.valueOf(b.value).equals(text)) {
           return b;
         }
@@ -47,43 +43,46 @@ public class DomainRole   {
     }
   }
 
-  @JsonProperty("role")
-  private RoleEnum role = null;
+  @JsonProperty("action")
+  private ActionEnum action = null;
 
-  public DomainRole domainName(String domainName) {
-    this.domainName = domainName;
+  @JsonProperty("roles")
+  private UserRoles roles = null;
+
+  public UserRolesPatch action(ActionEnum action) {
+    this.action = action;
     return this;
   }
 
    /**
-   * Get domainName
-   * @return domainName
+   * Get action
+   * @return action
   **/
   @ApiModelProperty(value = "")
-  public String getDomainName() {
-    return domainName;
+  public ActionEnum getAction() {
+    return action;
   }
 
-  public void setDomainName(String domainName) {
-    this.domainName = domainName;
+  public void setAction(ActionEnum action) {
+    this.action = action;
   }
 
-  public DomainRole role(RoleEnum role) {
-    this.role = role;
+  public UserRolesPatch roles(UserRoles roles) {
+    this.roles = roles;
     return this;
   }
 
    /**
-   * Get role
-   * @return role
+   * Get roles
+   * @return roles
   **/
   @ApiModelProperty(value = "")
-  public RoleEnum getRole() {
-    return role;
+  public UserRoles getRoles() {
+    return roles;
   }
 
-  public void setRole(RoleEnum role) {
-    this.role = role;
+  public void setRoles(UserRoles roles) {
+    this.roles = roles;
   }
 
 
@@ -95,23 +94,23 @@ public class DomainRole   {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    DomainRole domainRole = (DomainRole) o;
-    return Objects.equals(this.domainName, domainRole.domainName) &&
-        Objects.equals(this.role, domainRole.role);
+    UserRolesPatch userRolesPatch = (UserRolesPatch) o;
+    return Objects.equals(this.action, userRolesPatch.action) &&
+        Objects.equals(this.roles, userRolesPatch.roles);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(domainName, role);
+    return Objects.hash(action, roles);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class DomainRole {\n");
+    sb.append("class UserRolesPatch {\n");
     
-    sb.append("    domainName: ").append(toIndentedString(domainName)).append("\n");
-    sb.append("    role: ").append(toIndentedString(role)).append("\n");
+    sb.append("    action: ").append(toIndentedString(action)).append("\n");
+    sb.append("    roles: ").append(toIndentedString(roles)).append("\n");
     sb.append("}");
     return sb.toString();
   }

@@ -1,20 +1,17 @@
-package io.swagger.api;
+package authenticationserver.swagger.api;
 
-import io.swagger.model.Domain;
-import io.swagger.model.Organization;
-import io.swagger.model.UserRoles;
-import io.swagger.model.UserRolesPatch;
+import authenticationserver.swagger.model.MDomain;
+import authenticationserver.swagger.model.MOrganization;
+import authenticationserver.swagger.model.UserRoles;
+import authenticationserver.swagger.model.UserRolesPatch;
 
 import io.swagger.annotations.*;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RequestPart;
-import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
 
@@ -36,13 +33,13 @@ public interface OrganizationsApi {
         @ApiParam(value = "current timestamp in seconds encoded with participants private key") @RequestParam(value = "encodedTime", required = false) String encodedTime);
 
 
-    @ApiOperation(value = "Changes domains status", notes = "Changes domains status. If domain becomes inactive, its new participants cant be creates. Domain status can be changes only if organization is active", response = Void.class, tags={  })
+    @ApiOperation(value = "Changes domains status", notes = "Changes domains status. If domain becomes inactive, its new participants cant be creates. MDomain status can be changes only if organization is active", response = Void.class, tags={  })
     @ApiResponses(value = { 
         @ApiResponse(code = 200, message = "Successful operation", response = Void.class),
         @ApiResponse(code = 400, message = "Wrong parameters. Status must be 'active' or 'inactive'", response = Void.class),
         @ApiResponse(code = 401, message = "Unauthorized", response = Void.class),
         @ApiResponse(code = 403, message = "Forbidden operation", response = Void.class),
-        @ApiResponse(code = 404, message = "Organization or domain with specified name not found", response = Void.class) })
+        @ApiResponse(code = 404, message = "MOrganization or domain with specified name not found", response = Void.class) })
     @RequestMapping(value = "/organizations/{oName}/domains/{name}",
         method = RequestMethod.PATCH)
     ResponseEntity<Void> changeDomainStatus(@ApiParam(value = "name of the organization",required=true ) @PathVariable("oName") String oName,
@@ -56,7 +53,7 @@ public interface OrganizationsApi {
         @ApiResponse(code = 400, message = "Wrong parameters. Status must be 'active' or 'inactive'", response = Void.class),
         @ApiResponse(code = 401, message = "Unauthorized", response = Void.class),
         @ApiResponse(code = 403, message = "Forbidden operation", response = Void.class),
-        @ApiResponse(code = 404, message = "Organization with specified id not found", response = Void.class) })
+        @ApiResponse(code = 404, message = "MOrganization with specified id not found", response = Void.class) })
     @RequestMapping(value = "/organizations/{name}",
         method = RequestMethod.PATCH)
     ResponseEntity<Void> changeOrganizationStatus(@ApiParam(value = "name of the organization",required=true ) @PathVariable("name") String name,
@@ -69,7 +66,7 @@ public interface OrganizationsApi {
         @ApiResponse(code = 400, message = "Wrong parameters. Status must be 'active' or 'inactive'", response = Void.class),
         @ApiResponse(code = 401, message = "Unauthorized", response = Void.class),
         @ApiResponse(code = 403, message = "Forbidden operation", response = Void.class),
-        @ApiResponse(code = 404, message = "Organization or domain or participant not found", response = Void.class) })
+        @ApiResponse(code = 404, message = "MOrganization or domain or participant not found", response = Void.class) })
     @RequestMapping(value = "/organizations/{oName}/domains/{dName}/participants/{pId}",
         method = RequestMethod.PATCH)
     ResponseEntity<Void> changeParticipantStatus(@ApiParam(value = "name of the organization",required=true ) @PathVariable("oName") String oName,
@@ -83,32 +80,32 @@ public interface OrganizationsApi {
         @ApiResponse(code = 200, message = "Successful operation", response = Void.class),
         @ApiResponse(code = 401, message = "Unauthorized", response = Void.class),
         @ApiResponse(code = 403, message = "Forbidden operation", response = Void.class),
-        @ApiResponse(code = 404, message = "Organization not found", response = Void.class),
-        @ApiResponse(code = 409, message = "Domain with specified name already exists", response = Void.class) })
+        @ApiResponse(code = 404, message = "MOrganization not found", response = Void.class),
+        @ApiResponse(code = 409, message = "MDomain with specified name already exists", response = Void.class) })
     @RequestMapping(value = "/organizations/{oName}/domain",
         consumes = { "application/json" },
         method = RequestMethod.POST)
     ResponseEntity<Void> createDomain(@ApiParam(value = "name of the organization in wich domain will be created",required=true ) @PathVariable("oName") String oName,
-        @ApiParam(value = "object that represents a new domain. Status should be null" ,required=true ) @RequestBody Domain body);
+        @ApiParam(value = "object that represents a new domain. Status should be null" ,required=true ) @RequestBody MDomain body);
 
 
     @ApiOperation(value = "Creates a new organization", notes = "", response = Void.class, tags={  })
     @ApiResponses(value = { 
         @ApiResponse(code = 200, message = "Successful operation", response = Void.class),
         @ApiResponse(code = 401, message = "Unauthorized", response = Void.class),
-        @ApiResponse(code = 409, message = "Organization with specified name already exists", response = Void.class) })
+        @ApiResponse(code = 409, message = "MOrganization with specified name already exists", response = Void.class) })
     @RequestMapping(value = "/organizations",
         consumes = { "application/json" },
         method = RequestMethod.POST)
-    ResponseEntity<Void> createOrganization(@ApiParam(value = "Object that represents a new organization. Status property should be null" ,required=true ) @RequestBody Organization body);
+    ResponseEntity<Void> createOrganization(@ApiParam(value = "Object that represents a new organization. Status property should be null" ,required=true ) @RequestBody MOrganization body);
 
 
-    @ApiOperation(value = "Changes domains status to 'inactive'", notes = "Changes domains status to 'inactive'. If domain is inactive, its new participants cant be creates. Domain status can be changes only if organization is active", response = Void.class, tags={  })
+    @ApiOperation(value = "Changes domains status to 'inactive'", notes = "Changes domains status to 'inactive'. If domain is inactive, its new participants cant be creates. MDomain status can be changes only if organization is active", response = Void.class, tags={  })
     @ApiResponses(value = { 
         @ApiResponse(code = 200, message = "Successful operation", response = Void.class),
         @ApiResponse(code = 401, message = "Unauthorized", response = Void.class),
         @ApiResponse(code = 403, message = "Forbidden operation", response = Void.class),
-        @ApiResponse(code = 404, message = "Organization or domain with specified name not found", response = Void.class) })
+        @ApiResponse(code = 404, message = "MOrganization or domain with specified name not found", response = Void.class) })
     @RequestMapping(value = "/organizations/{oName}/domains/{name}",
         method = RequestMethod.DELETE)
     ResponseEntity<Void> deleteDomainByName(@ApiParam(value = "name of the organization",required=true ) @PathVariable("oName") String oName,
@@ -120,7 +117,7 @@ public interface OrganizationsApi {
         @ApiResponse(code = 200, message = "Successful operation", response = Void.class),
         @ApiResponse(code = 401, message = "Unauthorized", response = Void.class),
         @ApiResponse(code = 403, message = "Forbidden operation. Only administrator allowed", response = Void.class),
-        @ApiResponse(code = 404, message = "Organization with specified id not found", response = Void.class) })
+        @ApiResponse(code = 404, message = "MOrganization with specified id not found", response = Void.class) })
     @RequestMapping(value = "/organizations/{name}",
         method = RequestMethod.DELETE)
     ResponseEntity<Void> deleteOrganizationByName(@ApiParam(value = "name of the organization",required=true ) @PathVariable("name") String name);
@@ -131,7 +128,7 @@ public interface OrganizationsApi {
         @ApiResponse(code = 200, message = "Successful operation", response = Void.class),
         @ApiResponse(code = 401, message = "Unauthorized", response = Void.class),
         @ApiResponse(code = 403, message = "Forbidden operation", response = Void.class),
-        @ApiResponse(code = 404, message = "Organization or domain or participant not found", response = Void.class) })
+        @ApiResponse(code = 404, message = "MOrganization or domain or participant not found", response = Void.class) })
     @RequestMapping(value = "/organizations/{oName}/domains/{dName}/participants/{pId}",
         method = RequestMethod.DELETE)
     ResponseEntity<Void> deleteParticipant(@ApiParam(value = "name of the organization",required=true ) @PathVariable("oName") String oName,
@@ -139,27 +136,27 @@ public interface OrganizationsApi {
         @ApiParam(value = "participant id",required=true ) @PathVariable("pId") Long pId);
 
 
-    @ApiOperation(value = "Finds domain by name", notes = "Returns requested domain information", response = Domain.class, tags={  })
+    @ApiOperation(value = "Finds domain by name", notes = "Returns requested domain information", response = MDomain.class, tags={  })
     @ApiResponses(value = { 
-        @ApiResponse(code = 200, message = "Successful operation", response = Domain.class),
-        @ApiResponse(code = 401, message = "Unauthorized", response = Domain.class),
-        @ApiResponse(code = 403, message = "Forbidden operation. Only organization administrators and users with the domain roles allowed", response = Domain.class),
-        @ApiResponse(code = 404, message = "Organization or domain with specified name not found", response = Domain.class) })
+        @ApiResponse(code = 200, message = "Successful operation", response = MDomain.class),
+        @ApiResponse(code = 401, message = "Unauthorized", response = MDomain.class),
+        @ApiResponse(code = 403, message = "Forbidden operation. Only organization administrators and users with the domain roles allowed", response = MDomain.class),
+        @ApiResponse(code = 404, message = "MOrganization or domain with specified name not found", response = MDomain.class) })
     @RequestMapping(value = "/organizations/{oName}/domains/{name}",
         produces = { "application/json" }, 
         method = RequestMethod.GET)
-    ResponseEntity<Domain> getDomainByName(@ApiParam(value = "name of the organization",required=true ) @PathVariable("oName") String oName,
-        @ApiParam(value = "name of the domain",required=true ) @PathVariable("name") String name);
+    ResponseEntity<MDomain> getDomainByName(@ApiParam(value = "name of the organization",required=true ) @PathVariable("oName") String oName,
+                                            @ApiParam(value = "name of the domain",required=true ) @PathVariable("name") String name);
 
 
-    @ApiOperation(value = "Finds organization by name", notes = "Returns requested organization information", response = Organization.class, tags={  })
+    @ApiOperation(value = "Finds organization by name", notes = "Returns requested organization information", response = MOrganization.class, tags={  })
     @ApiResponses(value = { 
-        @ApiResponse(code = 200, message = "Successful operation", response = Organization.class),
-        @ApiResponse(code = 404, message = "Organization with specified name not found", response = Organization.class) })
+        @ApiResponse(code = 200, message = "Successful operation", response = MOrganization.class),
+        @ApiResponse(code = 404, message = "MOrganization with specified name not found", response = MOrganization.class) })
     @RequestMapping(value = "/organizations/{name}",
         produces = { "application/json" }, 
         method = RequestMethod.GET)
-    ResponseEntity<Organization> getOrganizationByName(@ApiParam(value = "name of organization to return",required=true ) @PathVariable("name") String name);
+    ResponseEntity<MOrganization> getOrganizationByName(@ApiParam(value = "name of organization to return",required=true ) @PathVariable("name") String name);
 
 
     @ApiOperation(value = "Finds organization users", notes = "Returns a list of users names that partisipate in the organization", response = String.class, responseContainer = "List", tags={  })
@@ -167,7 +164,7 @@ public interface OrganizationsApi {
         @ApiResponse(code = 200, message = "Successful operation", response = String.class),
         @ApiResponse(code = 401, message = "Unauthorized", response = String.class),
         @ApiResponse(code = 403, message = "Forbidden operation. Only administrator allowed", response = String.class),
-        @ApiResponse(code = 404, message = "Organization with specified name not found", response = String.class) })
+        @ApiResponse(code = 404, message = "MOrganization with specified name not found", response = String.class) })
     @RequestMapping(value = "/organizations/{name}/users",
         produces = { "application/json" }, 
         method = RequestMethod.GET)
@@ -179,7 +176,7 @@ public interface OrganizationsApi {
         @ApiResponse(code = 200, message = "Successful operation", response = String.class),
         @ApiResponse(code = 401, message = "Unauthorized", response = String.class),
         @ApiResponse(code = 403, message = "Forbidden operation. Only administrators allowed", response = String.class),
-        @ApiResponse(code = 404, message = "Organization not found", response = String.class) })
+        @ApiResponse(code = 404, message = "MOrganization not found", response = String.class) })
     @RequestMapping(value = "/organizations/{oName}/domain",
         method = RequestMethod.GET)
     ResponseEntity<List<String>> getUserDomains(@ApiParam(value = "name of organization in wich domain will be created",required=true ) @PathVariable("oName") String oName);
@@ -199,7 +196,7 @@ public interface OrganizationsApi {
         @ApiResponse(code = 200, message = "Successful operation", response = UserRoles.class),
         @ApiResponse(code = 401, message = "Unauthorized", response = UserRoles.class),
         @ApiResponse(code = 403, message = "Forbidden operation. Only administrator and user itslef allowed", response = UserRoles.class),
-        @ApiResponse(code = 404, message = "Organization with specified name not found", response = UserRoles.class) })
+        @ApiResponse(code = 404, message = "MOrganization with specified name not found", response = UserRoles.class) })
     @RequestMapping(value = "/organizations/{name}/users/{login}",
         produces = { "application/json" }, 
         method = RequestMethod.GET)
@@ -213,7 +210,7 @@ public interface OrganizationsApi {
         @ApiResponse(code = 400, message = "Wrong parameters. Status must be 'active' or 'inactive'", response = Void.class),
         @ApiResponse(code = 401, message = "Unauthorized", response = Void.class),
         @ApiResponse(code = 403, message = "Forbidden operation", response = Void.class),
-        @ApiResponse(code = 404, message = "Organization with specified name not found", response = Void.class) })
+        @ApiResponse(code = 404, message = "MOrganization with specified name not found", response = Void.class) })
     @RequestMapping(value = "/organizations/{name}/users/{login}",
         consumes = { "application/json" },
         method = RequestMethod.PATCH)
@@ -227,7 +224,7 @@ public interface OrganizationsApi {
         @ApiResponse(code = 200, message = "Successful operation", response = Void.class),
         @ApiResponse(code = 401, message = "Unauthorized", response = Void.class),
         @ApiResponse(code = 403, message = "Forbidden operation", response = Void.class),
-        @ApiResponse(code = 404, message = "Organization or domain with specified name not found", response = Void.class),
+        @ApiResponse(code = 404, message = "MOrganization or domain with specified name not found", response = Void.class),
         @ApiResponse(code = 409, message = "Participant with specified name already exists", response = Void.class) })
     @RequestMapping(value = "/organizations/{oName}/domains/{dName}/participants",
         produces = { "image/jpeg" }, 
@@ -243,7 +240,7 @@ public interface OrganizationsApi {
         @ApiResponse(code = 200, message = "Successful operation", response = Void.class),
         @ApiResponse(code = 401, message = "Unauthorized", response = Void.class),
         @ApiResponse(code = 403, message = "Forbidden operation.", response = Void.class),
-        @ApiResponse(code = 404, message = "Organization with specified name not found", response = Void.class) })
+        @ApiResponse(code = 404, message = "MOrganization with specified name not found", response = Void.class) })
     @RequestMapping(value = "/organizations/{name}/users/{login}",
         consumes = { "application/json" },
         method = RequestMethod.POST)

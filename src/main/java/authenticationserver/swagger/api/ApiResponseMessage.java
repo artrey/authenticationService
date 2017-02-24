@@ -1,4 +1,4 @@
-package io.swagger.api;
+package authenticationserver.swagger.api;
 
 import javax.xml.bind.annotation.XmlTransient;
 

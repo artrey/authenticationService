@@ -1,18 +1,17 @@
-package io.swagger.model;
+package authenticationserver.swagger.model;
 
 import java.util.Objects;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
-import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 
 /**
- * User
+ * MUser
  */
 @javax.annotation.Generated(value = "class io.swagger.codegen.languages.SpringCodegen", date = "2017-02-23T15:14:07.329Z")
 
-public class User   {
+public class MUser {
   @JsonProperty("login")
   private String login = null;
 
@@ -56,7 +55,7 @@ public class User   {
   @JsonProperty("status")
   private StatusEnum status = null;
 
-  public User login(String login) {
+  public MUser login(String login) {
     this.login = login;
     return this;
   }
@@ -74,7 +73,7 @@ public class User   {
     this.login = login;
   }
 
-  public User email(String email) {
+  public MUser email(String email) {
     this.email = email;
     return this;
   }
@@ -92,7 +91,7 @@ public class User   {
     this.email = email;
   }
 
-  public User pass(String pass) {
+  public MUser pass(String pass) {
     this.pass = pass;
     return this;
   }
@@ -110,7 +109,7 @@ public class User   {
     this.pass = pass;
   }
 
-  public User status(StatusEnum status) {
+  public MUser status(StatusEnum status) {
     this.status = status;
     return this;
   }
@@ -137,11 +136,11 @@ public class User   {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    User user = (User) o;
-    return Objects.equals(this.login, user.login) &&
-        Objects.equals(this.email, user.email) &&
-        Objects.equals(this.pass, user.pass) &&
-        Objects.equals(this.status, user.status);
+    MUser MUser = (MUser) o;
+    return Objects.equals(this.login, MUser.login) &&
+        Objects.equals(this.email, MUser.email) &&
+        Objects.equals(this.pass, MUser.pass) &&
+        Objects.equals(this.status, MUser.status);
   }
 
   @Override
@@ -152,7 +151,7 @@ public class User   {
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class User {\n");
+    sb.append("class MUser {\n");
     
     sb.append("    login: ").append(toIndentedString(login)).append("\n");
     sb.append("    email: ").append(toIndentedString(email)).append("\n");

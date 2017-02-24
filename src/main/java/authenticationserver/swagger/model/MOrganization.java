@@ -1,18 +1,17 @@
-package io.swagger.model;
+package authenticationserver.swagger.model;
 
 import java.util.Objects;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
-import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 
 /**
- * Organization
+ * MOrganization
  */
 @javax.annotation.Generated(value = "class io.swagger.codegen.languages.SpringCodegen", date = "2017-02-23T15:14:07.329Z")
 
-public class Organization   {
+public class MOrganization {
   @JsonProperty("name")
   private String name = null;
 
@@ -53,7 +52,7 @@ public class Organization   {
   @JsonProperty("status")
   private StatusEnum status = null;
 
-  public Organization name(String name) {
+  public MOrganization name(String name) {
     this.name = name;
     return this;
   }
@@ -71,7 +70,7 @@ public class Organization   {
     this.name = name;
   }
 
-  public Organization description(String description) {
+  public MOrganization description(String description) {
     this.description = description;
     return this;
   }
@@ -89,7 +88,7 @@ public class Organization   {
     this.description = description;
   }
 
-  public Organization status(StatusEnum status) {
+  public MOrganization status(StatusEnum status) {
     this.status = status;
     return this;
   }
@@ -116,10 +115,10 @@ public class Organization   {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    Organization organization = (Organization) o;
-    return Objects.equals(this.name, organization.name) &&
-        Objects.equals(this.description, organization.description) &&
-        Objects.equals(this.status, organization.status);
+    MOrganization MOrganization = (MOrganization) o;
+    return Objects.equals(this.name, MOrganization.name) &&
+        Objects.equals(this.description, MOrganization.description) &&
+        Objects.equals(this.status, MOrganization.status);
   }
 
   @Override
@@ -130,7 +129,7 @@ public class Organization   {
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class Organization {\n");
+    sb.append("class MOrganization {\n");
     
     sb.append("    name: ").append(toIndentedString(name)).append("\n");
     sb.append("    description: ").append(toIndentedString(description)).append("\n");
