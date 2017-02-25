@@ -1,5 +1,7 @@
 package authenticationserver.entities;
 
+import authenticationserver.swagger.model.MDomain;
+
 import javax.persistence.*;
 import java.util.Date;
 
@@ -17,17 +19,32 @@ public class Domain {
     @Column(nullable = false, updatable = false)
     private long organizationId;
 
-    @Column(nullable = false, updatable = false)
+    @Column(nullable = false)
     private String name;
 
     @Column
     private String description;
+
+    @Column(nullable = false, updatable = false)
+    private long creatorUserId;
 
     @Column(updatable = false, nullable = false, insertable = false, columnDefinition="TIMESTAMP DEFAULT CURRENT_TIMESTAMP")
     private Date creationTime;
 
     @Column(nullable = false)
     private Statuses status = Statuses.ACTIVE;
+
+
+    public Domain() {}
+
+
+    public Domain(long organizationId, String name, String description, long creatorUserId)
+    {
+        this.organizationId = organizationId;
+        this.name = name;
+        this.description = description;
+        this.creatorUserId = creatorUserId;
+    }
 
 
     public long getId() {
@@ -62,6 +79,14 @@ public class Domain {
         this.description = description;
     }
 
+    public long getCreatorUserId() {
+        return creatorUserId;
+    }
+
+    public void setCreatorUserId(long creatorUserId) {
+        this.creatorUserId = creatorUserId;
+    }
+
     public Date getCreationTime() {
         return creationTime;
     }
@@ -76,6 +101,18 @@ public class Domain {
 
     public void setStatus(Statuses status) {
         this.status = status;
+    }
+
+    public MDomain toMDomain()
+    {
+        MDomain d = new MDomain();
+        d.setId(id);
+        d.setName(name);
+        d.setDescription(description);
+        if (status == Statuses.ACTIVE) d.setStatus(MDomain.StatusEnum.ACTIVE);
+        else if (status == Statuses.INACTIVE) d.setStatus(MDomain.StatusEnum.INACTIVE);
+
+        return d;
     }
 
     public enum Statuses {

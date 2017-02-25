@@ -1,7 +1,6 @@
 package authenticationserver.swagger.api;
 
 import authenticationserver.swagger.model.MUser;
-
 import io.swagger.annotations.*;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;

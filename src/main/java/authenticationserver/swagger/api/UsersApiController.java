@@ -4,8 +4,8 @@ import authenticationserver.ao.SessionAO;
 import authenticationserver.ao.UserAO;
 import authenticationserver.ao.UserExistsException;
 import authenticationserver.entities.ServerUser;
-import authenticationserver.swagger.model.MUser;
 
+import authenticationserver.swagger.model.MUser;
 import io.swagger.annotations.*;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -39,7 +39,7 @@ public class UsersApiController implements UsersApi {
 
     public ResponseEntity<Void> changeUserStatus(@ApiParam(value = "new status", required = true,
             allowableValues = "ACTIVE, INACTIVE") @RequestParam(value = "status", required = true) String status,
-                                                 @CookieValue(SESSION_CODE_COOKIE) String sessionCode) {
+                                                 @CookieValue(value = SESSION_CODE_COOKIE, required = false) String sessionCode) {
         status = status.toUpperCase();
 
         Long uId = sessionAO.getSessionUserId(sessionCode);
@@ -81,7 +81,7 @@ public class UsersApiController implements UsersApi {
         return new ResponseEntity<Void>(HttpStatus.OK);
     }
 
-    public ResponseEntity<Void> deleteUser(@CookieValue(SESSION_CODE_COOKIE) String sessionCode) {
+    public ResponseEntity<Void> deleteUser(@CookieValue(value = SESSION_CODE_COOKIE, required = false) String sessionCode) {
         Long uId = sessionAO.getSessionUserId(sessionCode);
         if (uId == null)
         {
@@ -115,7 +115,7 @@ public class UsersApiController implements UsersApi {
         return new ResponseEntity<Void>(HttpStatus.OK);
     }
 
-    public ResponseEntity<Void> logout(@CookieValue(SESSION_CODE_COOKIE) String sessionCode) {
+    public ResponseEntity<Void> logout(@CookieValue(value = SESSION_CODE_COOKIE, required = false) String sessionCode) {
 
         Long userId = sessionAO.getSessionUserId(sessionCode);
 

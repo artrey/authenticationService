@@ -65,6 +65,7 @@ public class SessionAO {
      */
     public Long getSessionUserId(String sessionCode)
     {
+        if (sessionCode == null) return null;
         UserSession session = sessionRepository.findBySessionCode(sessionCode);
         return session == null
                 || System.currentTimeMillis() - session.getCreationTime().getTime() > sessionTTLMin*60_000

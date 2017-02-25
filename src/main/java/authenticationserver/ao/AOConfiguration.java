@@ -20,4 +20,21 @@ public class AOConfiguration {
         return new UserAO();
     }
 
+    @Bean
+    public OrganizationAO organizationAO()
+    {
+        return new OrganizationAO();
+    }
+
+    @Bean
+    public DomainAO getDomainAO()
+    {
+        return new DomainAO();
+    }
+
+    @Bean
+    public UserRoleAO getUserRoleAO()
+    {
+        return new UserRoleAO();
+    }
 }

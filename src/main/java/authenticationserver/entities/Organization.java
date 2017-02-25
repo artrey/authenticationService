@@ -1,5 +1,7 @@
 package authenticationserver.entities;
 
+import authenticationserver.swagger.model.MOrganization;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -16,17 +18,31 @@ public class Organization {
     @GeneratedValue
     private long id;
 
-    @Column(nullable = false, unique = true, updatable = false)
+    @Column(nullable = false, unique = true)
     private String name;
 
     @Column
     private String description;
+
+    @Column(nullable = false, updatable = false)
+    private long creatorUserId;
 
     @Column(updatable = false, nullable = false, insertable = false, columnDefinition="TIMESTAMP DEFAULT CURRENT_TIMESTAMP")
     private Date createTime;
 
     @Column(nullable = false)
     private Statuses status = Statuses.ACTIVE;
+
+
+    public Organization() {}
+
+
+    public Organization(String name, String description, long creatorUserId)
+    {
+        this.name = name;
+        this.description = description;
+        this.creatorUserId = creatorUserId;
+    }
 
 
     public long getId() {
@@ -53,6 +69,15 @@ public class Organization {
         this.description = description;
     }
 
+    public long getCreatorUserId() {
+        return creatorUserId;
+    }
+
+    public void setCreatorUserId(long creatorUserId)
+    {
+        this.creatorUserId = creatorUserId;
+    }
+
     public Date getCreateTime() {
         return createTime;
     }
@@ -69,6 +94,18 @@ public class Organization {
         this.status = status;
     }
 
+
+    public MOrganization toMOrganization()
+    {
+        MOrganization o = new MOrganization();
+        o.setId(id);
+        o.setName(name);
+        o.setDescription(description);
+        if (status == Statuses.ACTIVE) o.setStatus(MOrganization.StatusEnum.ACTIVE);
+        else if (status == Statuses.INACTIVE) o.setStatus(MOrganization.StatusEnum.INACTIVE);
+
+        return o;
+    }
 
     public enum Statuses {
         ACTIVE, INACTIVE;

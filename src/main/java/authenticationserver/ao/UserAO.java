@@ -90,7 +90,7 @@ public class UserAO {
         ServerUser serverUser = userRepository.findById(id);
         if (serverUser == null)
         {
-            throw new RuntimeException("ServerUser does not exists");
+            throw new RuntimeException(String.format("ServerUser with id %d does not exists", id));
         }
 
         if (serverUser.getStatus() == status) return;
