@@ -27,14 +27,32 @@ public class AOConfiguration {
     }
 
     @Bean
-    public DomainAO getDomainAO()
+    public DomainAO domainAO()
     {
         return new DomainAO();
     }
 
     @Bean
-    public UserRoleAO getUserRoleAO()
+    public UserRoleAO userRoleAO()
     {
         return new UserRoleAO();
+    }
+
+    @Bean
+    public DomainParticipantAO domainParticipantAO()
+    {
+        return new DomainParticipantAO();
+    }
+
+    @Bean
+    public ParticipantAuthenticationAO participantAuthenticationAO()
+    {
+        return new ParticipantAuthenticationAO();
+    }
+
+    @Bean
+    public WhiteOrganizationAO whiteOrganizationAO()
+    {
+        return new WhiteOrganizationAO();
     }
 }

@@ -1,16 +1,16 @@
 package authenticationserver.ao;
 
-import authenticationserver.entities.ServerUser;
+import authenticationserver.entities.SUser;
 import org.springframework.data.repository.Repository;
 
 /**
  * Created by igor on 24.02.17.
  */
-public interface UserRepository extends Repository<ServerUser, String> {
+public interface UserRepository extends Repository<SUser, String> {
 
-    ServerUser save(ServerUser serverUser);
+    SUser save(SUser sUser);
 
-    ServerUser findByLogin(String login);
+    SUser findByLogin(String login);
 
-    ServerUser findById(long id);
+    SUser findById(long id);
 }

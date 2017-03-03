@@ -32,6 +32,15 @@ public class DomainParticipant {
     private Statuses status = Statuses.ACTIVE;
 
 
+    public DomainParticipant() {}
+
+    public DomainParticipant(long domainId, String name, String publicKey, long creatorUserId) {
+        this.domainId = domainId;
+        this.name = name;
+        this.publicKey = publicKey;
+        this.creatorUserId = creatorUserId;
+    }
+
     public long getId() {
         return id;
     }

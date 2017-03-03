@@ -24,7 +24,7 @@ public class OrganizationAO {
      * @param name
      * @param description
      */
-    public void createOrganisation(String name, String description, long creatorUserId)
+    public Organization createOrganisation(String name, String description, long creatorUserId)
     {
         if (organizationRepository.findByName(name) != null)
         {
@@ -33,6 +33,7 @@ public class OrganizationAO {
 
         Organization o = organizationRepository.save(new Organization(name, description, creatorUserId));
         userRoleAO.grantRole(o.getId(), null, creatorUserId, UserRole.Roles.ADMINISTRATOR, creatorUserId);
+        return o;
     }
 
 
@@ -79,6 +80,19 @@ public class OrganizationAO {
     {
         return userRoleAO.getUserRoles(userId).stream().map(UserRole::getOrganizationId).distinct()
                 .map(oId -> organizationRepository.findById(oId)).collect(Collectors.toList());
+    }
+
+
+    /**
+     * Возвращает список идентификаторов пользователей, учавствующих в организации.
+     *
+     * @param oId
+     * @return
+     */
+    public List<Long> getOrganizationUsers(long oId)
+    {
+        return userRoleAO.getOrganizationUsersRoles(oId).stream().map(UserRole::getUserId).distinct()
+                .collect(Collectors.toList());
     }
 
 

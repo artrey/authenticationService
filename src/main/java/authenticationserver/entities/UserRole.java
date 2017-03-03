@@ -1,7 +1,5 @@
 package authenticationserver.entities;
 
-import com.sun.istack.internal.Nullable;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -46,7 +44,7 @@ public class UserRole {
     public UserRole() {}
 
 
-    public UserRole(long userId, long organizationId, @Nullable Long domainId, Roles role, long granterUserId)
+    public UserRole(long userId, long organizationId, Long domainId, Roles role, long granterUserId)
     {
         this.userId = userId;
         this.organizationId = organizationId;
@@ -129,7 +127,7 @@ public class UserRole {
     }
 
     public enum Roles {
-        ADMINISTRATOR, DISTRIBUTOR, VERIFIER;
+        ADMINISTRATOR, DISTRIBUTOR, AUTHENTICATOR;
     }
 
 }

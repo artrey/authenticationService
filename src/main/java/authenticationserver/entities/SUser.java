@@ -10,7 +10,7 @@ import java.util.Date;
  * Created by igor on 23.02.17.
  */
 @Entity
-public class ServerUser {
+public class SUser {
 
     @Id
     @GeneratedValue
@@ -34,9 +34,9 @@ public class ServerUser {
     @Column(nullable = false)
     private Statuses status = Statuses.ACTIVE;
 
-    public ServerUser() {}
+    public SUser() {}
 
-    public ServerUser(String login, String email, byte[] passSalt, String passHash) {
+    public SUser(String login, String email, byte[] passSalt, String passHash) {
         this.login = login;
         this.email = email;
         this.passSalt = passSalt;

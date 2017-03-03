@@ -1,13 +1,12 @@
 package authenticationserver.ao;
 
-import authenticationserver.entities.ServerUser;
+import authenticationserver.entities.SUser;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import javax.crypto.SecretKeyFactory;
 import javax.crypto.spec.PBEKeySpec;
-import java.math.BigInteger;
 import java.security.NoSuchAlgorithmException;
 import java.security.SecureRandom;
 import java.security.spec.InvalidKeySpecException;
@@ -61,42 +60,42 @@ public class UserAO {
         {
             throw new UserExistsException();
         }
-        userRepository.save(new ServerUser(login, email, salt, hashPassword(pass, salt)));
+        userRepository.save(new SUser(login, email, salt, hashPassword(pass, salt)));
     }
 
 
-    public ServerUser verify(String login, String pass)
+    public SUser verify(String login, String pass)
     {
-        ServerUser serverUser = userRepository.findByLogin(login);
+        SUser sUser = userRepository.findByLogin(login);
 
-        return serverUser == null || !serverUser.getPassHash().equals(hashPassword(pass, serverUser.getPassSalt())) ? null : serverUser;
+        return sUser == null || !sUser.getPassHash().equals(hashPassword(pass, sUser.getPassSalt())) ? null : sUser;
     }
 
 
-    public ServerUser getById(long id)
+    public SUser getById(long id)
     {
         return userRepository.findById(id);
     }
 
 
-    public ServerUser getByLogin(String login)
+    public SUser getByLogin(String login)
     {
         return userRepository.findByLogin(login);
     }
 
 
-    public void changeStatus(long id, ServerUser.Statuses status)
+    public void changeStatus(long id, SUser.Statuses status)
     {
-        ServerUser serverUser = userRepository.findById(id);
-        if (serverUser == null)
+        SUser sUser = userRepository.findById(id);
+        if (sUser == null)
         {
-            throw new RuntimeException(String.format("ServerUser with id %d does not exists", id));
+            throw new RuntimeException(String.format("SUser with id %d does not exists", id));
         }
 
-        if (serverUser.getStatus() == status) return;
+        if (sUser.getStatus() == status) return;
 
-        serverUser.setStatus(status);
-        userRepository.save(serverUser);
+        sUser.setStatus(status);
+        userRepository.save(sUser);
     }
 
 }

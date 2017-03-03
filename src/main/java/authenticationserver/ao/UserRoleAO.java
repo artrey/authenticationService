@@ -28,6 +28,12 @@ public class UserRoleAO {
     }
 
 
+    public List<UserRole> getOrganizationUsersRoles(long organizationId)
+    {
+        return userRoleRepository.findByOrganizationIdAndDenyTimeIsNull(organizationId);
+    }
+
+
     public void grantRole(long organizationId, Long dId, long uId, UserRole.Roles role, long granterUserId)
     {
         Long domainId = role == UserRole.Roles.ADMINISTRATOR ? null : dId;
@@ -55,7 +61,8 @@ public class UserRoleAO {
 
         if (role == UserRole.Roles.ADMINISTRATOR && uId == denierUserId)
         {
-            throw new RuntimeException("Administrator cant deny his own role");
+            // Administrator cant deny his own role
+            throw new UserRoleChangeException();
         }
 
         UserRole ur = userRoleRepository.findByOrganizationIdAndDomainIdAndUserIdAndRoleAndDenyTimeIsNull(organizationId, domainId, uId, role);

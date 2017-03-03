@@ -1,6 +1,7 @@
 package authenticationserver.ao;
 
 import authenticationserver.entities.Domain;
+import authenticationserver.entities.UserRole;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.List;
@@ -52,7 +53,17 @@ public class DomainAO {
         if (d == null) return false;
 
         return userRoleAO.getOrganizationUserRoles(d.getOrganizationId(), uId).stream()
-                .filter(ur -> ur.getDomainId() == null || ur.getDomainId() == dId).findAny().isPresent();
+                .anyMatch(ur -> ur.getDomainId() == null || ur.getDomainId() == dId);
+    }
+
+
+    public boolean hasRole(long dId, long uId, UserRole.Roles role)
+    {
+        Domain d = getById(dId);
+        if (d == null) return false;
+
+        return userRoleAO.getOrganizationUserRoles(d.getOrganizationId(), uId).stream()
+                .anyMatch(ur -> ur.getDomainId() == dId && ur.getRole() == role);
     }
 
 

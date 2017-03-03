@@ -10,19 +10,19 @@ import io.swagger.annotations.ApiModelProperty;
 /**
  * DomainRole
  */
-@javax.annotation.Generated(value = "class io.swagger.codegen.languages.SpringCodegen", date = "2017-02-24T18:13:23.197Z")
+@javax.annotation.Generated(value = "class io.swagger.codegen.languages.SpringCodegen", date = "2017-02-25T17:17:00.655Z")
 
 public class DomainRole   {
-  @JsonProperty("domainName")
-  private String domainName = null;
+  @JsonProperty("domainId")
+  private Long domainId = null;
 
   /**
    * Gets or Sets role
    */
   public enum RoleEnum {
-    DOMAINDISTRIBUTOR("domainDistributor"),
+    DISTRIBUTOR("distributor"),
     
-    STATISTICVIEWER("statisticViewer");
+    AUTHENTICATOR("authenticator");
 
     private String value;
 
@@ -50,22 +50,22 @@ public class DomainRole   {
   @JsonProperty("role")
   private RoleEnum role = null;
 
-  public DomainRole domainName(String domainName) {
-    this.domainName = domainName;
+  public DomainRole domainId(Long domainId) {
+    this.domainId = domainId;
     return this;
   }
 
    /**
-   * Get domainName
-   * @return domainName
+   * Get domainId
+   * @return domainId
   **/
   @ApiModelProperty(value = "")
-  public String getDomainName() {
-    return domainName;
+  public Long getDomainId() {
+    return domainId;
   }
 
-  public void setDomainName(String domainName) {
-    this.domainName = domainName;
+  public void setDomainId(Long domainId) {
+    this.domainId = domainId;
   }
 
   public DomainRole role(RoleEnum role) {
@@ -96,13 +96,13 @@ public class DomainRole   {
       return false;
     }
     DomainRole domainRole = (DomainRole) o;
-    return Objects.equals(this.domainName, domainRole.domainName) &&
+    return Objects.equals(this.domainId, domainRole.domainId) &&
         Objects.equals(this.role, domainRole.role);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(domainName, role);
+    return Objects.hash(domainId, role);
   }
 
   @Override
@@ -110,7 +110,7 @@ public class DomainRole   {
     StringBuilder sb = new StringBuilder();
     sb.append("class DomainRole {\n");
     
-    sb.append("    domainName: ").append(toIndentedString(domainName)).append("\n");
+    sb.append("    domainId: ").append(toIndentedString(domainId)).append("\n");
     sb.append("    role: ").append(toIndentedString(role)).append("\n");
     sb.append("}");
     return sb.toString();

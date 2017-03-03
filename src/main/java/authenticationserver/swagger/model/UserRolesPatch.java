@@ -9,7 +9,7 @@ import io.swagger.annotations.ApiModelProperty;
 /**
  * UserRolesPatch
  */
-@javax.annotation.Generated(value = "class io.swagger.codegen.languages.SpringCodegen", date = "2017-02-24T18:13:23.197Z")
+@javax.annotation.Generated(value = "class io.swagger.codegen.languages.SpringCodegen", date = "2017-02-25T17:17:00.655Z")
 
 public class UserRolesPatch   {
   /**

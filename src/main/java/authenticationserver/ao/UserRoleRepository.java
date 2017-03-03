@@ -16,6 +16,8 @@ public interface UserRoleRepository extends Repository<UserRole, Long> {
 
     List<UserRole> findByOrganizationIdAndUserIdAndDenyTimeIsNull(long organizationId, long uId);
 
+    List<UserRole> findByOrganizationIdAndDenyTimeIsNull(long organizationId);
+
     UserRole findByOrganizationIdAndDomainIdAndUserIdAndRoleAndDenyTimeIsNull(long organizationId, Long domainId,
                                                                               long userId, UserRole.Roles role);
 }
