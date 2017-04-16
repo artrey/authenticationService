@@ -168,7 +168,10 @@ public class UsersApiController implements UsersApi {
         {
             return new ResponseEntity<Void>(HttpStatus.METHOD_NOT_ALLOWED);
         }
-        response.addCookie(new Cookie(SESSION_CODE_COOKIE, sessionAO.create(sUser.getId())));
+
+        Cookie cookie = new Cookie(SESSION_CODE_COOKIE, sessionAO.create(sUser.getId()));
+        cookie.setPath("/");
+        response.addCookie(cookie);
         return new ResponseEntity<Void>(HttpStatus.OK);
     }
 

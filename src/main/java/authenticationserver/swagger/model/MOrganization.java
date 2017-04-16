@@ -57,7 +57,7 @@ public class MOrganization {
   @JsonProperty("status")
   private StatusEnum status = null;
 
-  @JsonProperty("mdomains")
+  @JsonProperty("domains")
   private List<MDomain> MDomains = new ArrayList<MDomain>();
 
   public MOrganization id(Long id) {

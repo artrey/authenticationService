@@ -18,12 +18,6 @@ public class WebPageController {
 
     @RequestMapping(value = "/")
     public String index(@CookieValue(value = UsersApi.SESSION_CODE_COOKIE, required = false) String sessionCode) {
-
-        if (sessionAO.getSessionUserId(sessionCode) == null)
-        {
-            return "login";
-        }
-
         return "index";
     }
 

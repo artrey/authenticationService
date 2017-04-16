@@ -151,7 +151,7 @@ public class MDomain {
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class MDomain {\n");
+    sb.append("class Domain {\n");
     
     sb.append("    id: ").append(toIndentedString(id)).append("\n");
     sb.append("    name: ").append(toIndentedString(name)).append("\n");
