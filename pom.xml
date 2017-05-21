@@ -82,17 +82,23 @@
             <artifactId>joda-time</artifactId>
         </dependency>
 <<<<<<< HEAD
+<<<<<<< HEAD
 		<!-- <dependency> -->
 			<!-- <groupId>postgresql</groupId> -->
 			<!-- <artifactId>postgresql</artifactId> -->
 			<!-- <version>9.1-901.jdbc4</version> -->
 		<!-- </dependency> -->
 =======
+=======
+>>>>>>> 8128f2fe993a21a4f79259dd96b50ed7e9aecef8
 		<!--<dependency>
 			<groupId>postgresql</groupId>
 			<artifactId>postgresql</artifactId>
 			<version>9.1-901.jdbc4</version>
 		</dependency>-->
+<<<<<<< HEAD
+>>>>>>> 8128f2fe993a21a4f79259dd96b50ed7e9aecef8
+=======
 >>>>>>> 8128f2fe993a21a4f79259dd96b50ed7e9aecef8
     </dependencies>
 </project>
