@@ -25,7 +25,7 @@ public interface OrganizationsApi {
         @ApiResponse(code = 403, message = "Forbidden operation. Only authenticators and administrators can authenticate participants", response = Void.class) })
     @RequestMapping(value = "/organizations/domains/{id}/participants/{pId}/authentication",
         produces = { "application/json" }, 
-        method = RequestMethod.GET)
+        method = RequestMethod.POST)
     ResponseEntity<Void> authenticate(@ApiParam(value = "id of the domain", required = true) @PathVariable("id") Long id,
                                       @ApiParam(value = "participant id", required = true) @PathVariable("pId") Long pId,
                                       @ApiParam(value = "current timestamp in seconds encoded with participants private key") @RequestBody String encodedTime,
